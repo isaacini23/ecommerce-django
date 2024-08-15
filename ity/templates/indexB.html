@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=" stylesheet" href="{% static 'styles.css' %}">
+        <link rel=" stylesheet" href=" {% static 'grid.css' %}">
+        <link rel=" stylesheet" href="{% static 'anim.css' %}">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.min.css' %}">
+
+      {% block css%}
+      {% endblock%}
+    </head>
+
+
+    <script type="text/javascript">
+      var user = '{{request.user}}'
+
+    function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken')
+
+    function getCookie(name) {
+        // Split cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        // Loop through the array elements
+        for(var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+
+            /* Removing whitespace at the beginning of the cookie name
+            and compare it with the given string */
+            if(name == cookiePair[0].trim()) {
+                // Decode the cookie value and return
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+
+        // Return null if not found
+        return null;
+    }
+    var cart = JSON.parse(getCookie('cart'))
+
+    if (cart == undefined){
+      cart = {}
+      console.log('Cart Created!', cart)
+      document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+    }
+    console.log('Cart:', cart)
+  
+    
+  
+  </script>
+
+  <body class="contact"> 
+    <div>
+      <ul class="sidenav">
+        <li><a class="active" href="{% url 'ity:home' %}">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="{% url 'ity:contact' %}">Contact</a></li>
+        <li><a href="{% url 'ity:about' %}" >About</a></li>
+        {% if user.is_superuser %}
+          <li><a class="" href="{% url 'ity:upload' %}">upload </a></li>
+        
+          
+    
+        {% endif %}
+
+        {% if user.is_authenticated %}
+          <li><a class="" href="{% url 'authe:logout_page' %}" >logout </a></li>
+          <li>{{ user.username }}</li>
+          <li>{{ user.email }}</li>   
+          <li><a class="" href=" {% url 'authe:change' %}" >change password </a></li>
+                    
+        {% else %}
+          <li><a  href="{% url 'authe:register' %}" >signin </a></li>
+          <li><a href="{% url 'authe:login_page' %}"class="btn btn-warning">Login</a></li>      
+        {% endif %}
+
+        <li><a id="cart-total">{{cartItems}}</a></li>
+        <li>
+          <a href="{% url 'ity:cart' %}">
+            <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+          </a>
+        </li>
+      
+          <form method="POST" action="{% url 'ity:search' %}">
+              <input type="text" name="b" class="input" placeholder="Search..">
+              {% csrf_token %}
+              <button name="submit" type="submit" class="search" > search</button>
+            </form>
+      </ul>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+
+    </div>
+      
+      
+        
+      <div class="content">
+
+        {% block content %} {% endblock content %}
+        
+          <!-- the  body-->
+        
+      </div>
+      
+  </body>
+
+
+    <script src="{% static 'bootstrap-5.0.2-dist/js/bootstrap.min.js' %}></script>
+</html>

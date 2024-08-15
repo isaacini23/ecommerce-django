@@ -1,0 +1,22 @@
+@keyframes conc{
+	0% {background-color: blue;}
+
+	10% {background-color: green;}
+
+	20% {background-color: purple;}
+
+	30% {background-color: indigo;}
+
+	40% {background-color: lightblue;}
+
+	50% {background-color: lightgreen;}
+
+	60% {background-color: blue;}
+
+	70% {background-color: white;}
+
+	80% {background-color: green;}
+	90% {background-color: blue;}
+	100% {background-color: purple;}
+
+}

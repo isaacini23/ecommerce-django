@@ -1,0 +1,25 @@
+
+
+{% extends 'indexB.html' %}
+
+
+{% block content %}
+    <article>
+        <div style="width: 9%;">
+            <img src="{{mono.image.url }}" alt="" style="width: 600px;">
+        </div>
+        
+        <h2>{{ mono.name }}</h2>
+
+        <div class="card-header mt-4">
+            {{ mono.others}}
+        </div>
+
+       
+       
+
+    </article>
+
+
+
+{% endblock %}

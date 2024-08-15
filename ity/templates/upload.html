@@ -1,0 +1,85 @@
+{% extends 'indexB.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+	
+	<center style="padding-top: 4rem;">
+			<div class="row">
+			<div class=" py-5 h-100">
+			<div class="col-md-6 col-lg-3" style="padding-right: 500px">
+				<div class="card  bg-dark" style="width:500px">
+			 		<div class="card-body">
+			   			
+
+						
+
+					<form method="POST" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+
+						{{form.as_p}}
+
+
+					{{form.errors}}
+					<div style="padding-top: 30px; ">
+						
+						<button class="btn btn-outline-light btn-sm px-5" type="submit" name="submit" value="CreateUser1" onclick="">submit</button>
+					</div>
+					
+
+
+					</form>
+		
+						
+					{% if obj %}
+						<h6>you just add</h6>
+
+				      <div class="col-md-8 col-lg-3 ">
+				        <img class="thumbnail" src="{{obj.image.url }}">
+				        <div class="box-element product  bg-dark">
+				          <h6><strong>{{obj.name}}</strong></h6>
+				          <hr>
+
+				         
+				          <h4 style="display: inline-block; float: right"><strong>#{{obj.price}}</strong></h4>
+
+				        </div>
+				      </div>
+				      
+					{% endif %}
+
+
+
+			</div>
+			 			</div> 
+
+				</div>
+
+			</div>
+
+	
+</div>
+	<hr>
+
+	
+
+
+
+
+	</center>
+	
+		
+{% endblock content %}
+
+'name', 'image', 'price', 'kind','others',
+<form method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<button type="submit">submit</button>
+
+							
+						</form>
+							

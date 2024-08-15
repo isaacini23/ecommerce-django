@@ -1,0 +1,92 @@
+{% extends 'indexB.html' %}
+{% block content %}
+
+
+	<h1>register</h1>
+
+	<form method="POST" action="">
+		{% csrf_token %}
+
+		
+		<center>
+			<section>
+				<div class="container py-5 h-100">
+				<div class="row">
+				<div >
+				<div class="card bg-dark text-white container" style="border-radius­: 12%; width: 500px">
+				<div class="card-body " id="">
+		
+				
+				<h2 class="fw-bold mb-2 text-uppercase">sign up</h2>
+				<p class="text-white-50­ mb-5">Please enter your login and password!</p>
+		
+				<div class="form-outline form-white mb-2">
+					<label class="form-label" for="">First name</label>
+					<input type="firstname" id="typeEmailX" name="fistname" class="form-control form-control-lg" />
+		
+				</div>
+		
+				<div class="form-outline form-white mb-2">
+					<label class="form-label" for="">last name</label>
+				
+					<input type="lasname" id="typeEmailX" name="lasname" class="form-control form-control-lg" />
+				</div>
+		
+				<div class="form-outline form-white mb-2">
+					<label class="form-label" for="">UserName</label>
+
+					<input type="username" id="typeEmailX" name="username" class="form-control form-control-lg" />
+				</div>
+		
+				<div class="form-outline form-white mb-2" style="display: inline-table;">
+					<label class="form-label" for="">email</label>				
+					<input type="email" id="typeEmailX" name="email" class="form-control form-control-lg" />
+				</div>
+		
+		
+				<div class="form-outline form-white mb-2">
+					<label class="form-label" for="typePasswordX">password</label>			
+					<input type="password" id="typeEmailX" name="password1" class="form-control form-control-lg" />
+				</div>
+		
+				<div class="form-outline form-white mb-2">
+					<label class="form-label" for="typePasswordX">­Password</label>					
+					<input type="password" id="typePasswordX" name="password2" class="form-control form-control-lg" />
+				</div>
+		
+				<p class="small mb-5 pb-lg-2"><a class="text-white-50­" href="">Forgot password?</a></p>
+		
+		
+				<button class="btn btn-outline-light btn-lg px-5" type="submit" name="Create Userl">Login</button>
+		
+		
+				</div>
+		
+				<div>
+				
+				<p class="mb-0" style="color: black">Don't have an account? <a href="{% url 'authe:register' %}" class="text-white-50­ fw-bold">Sign Up</a>
+				</p>
+				</div>
+		
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+		
+			</section>
+		{{form.errors}}
+		<span><h6>already have an account</h6><a href="{% url 'authe:login_page' %}">login</a></span>
+
+		</center>
+	</form>
+			
+	
+<input type="submit" name="Create Userl" value="submit">
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'indexB.html' %}
+{% load static %}
+
+{% block content %}
+
+	<center>
+		{% if searched %}
+			<h1>You Searched For {{searched}}</h1>
+
+			 <div class="row no-gutters ">
+      			{% for p in products %}
+		      		<div class="card1 col-md-8 col-lg-3 col-100">
+		        		<img class="thumbnail" src="{{p.image.url }}">
+		        		<div class="box-element product  bg-dark">
+		          			<h6><strong>{{p.name}}</strong></h6>
+		          			<hr>
+
+		         		 <button data-product="{{p.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+		          
+		          		<a class="btn btn-outline-success" href="{% url 'ity:dress_detail' pk=p.pk %}">View</a>
+		          		<h4 style="display: inline-block; float: right"><strong>#{{p.price}}</strong></h4>
+
+		        	</div>
+		      </div>
+		      <br>
+		      {% empty %}
+				<li>
+				Can't find what you searched for.
+				</li>
+
+
+      {% endfor %}
+    </div>
+
+		{% endif %}
+
+
+	</center>
+
+		
+{% endblock content %}
+
+<div class="card">
+	<img src="{{p.image.url }}" alt="Denim Jeans" style="width:100%">
+	<h1>Tailored Jeans</h1>
+	<p class="price">$19.99</p>
+	<p>Some text about the jeans..</p>
+	<p><button data-product="{{p.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></p>
+  </div>

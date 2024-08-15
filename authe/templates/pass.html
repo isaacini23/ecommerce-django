@@ -1,0 +1,30 @@
+
+{% extends 'indexB.html' %}
+{% block content %}
+
+	<center>
+		
+		<form method="POST" action="{% url 'authe:change' %}" >
+			{% csrf_token %}
+
+			
+			<div style="text-align: center; padding-left: 100px; padding-top: 100px" class="col-6">
+				{% for f in form %}
+					{{f}}
+					{% if f.help_text %}
+						<small style="display: none;">{{ f.help_text}}</small>
+
+					{% endif %}
+					{% for error in f.errors %}
+						<p style="color: red">{{ error }}</p>
+					{% endfor %}
+				{% endfor%}
+				
+				<input type="submit" name="Create Userl" value="submit">
+				<span><h6>already have an account</h6><a href="{% url 'authe:login_page' %}">login</a></span>
+			</div>
+	</center>
+
+	
+{% endblock %}
+

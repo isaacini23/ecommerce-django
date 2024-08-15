@@ -1,0 +1,34 @@
+{% extends 'indexB.html' %}
+{% block content %}
+
+<div id="body">
+    <center class="center">
+        <div class="container" id="">
+   
+        <div>
+           <h1 class="h1">Sign In</h1>
+        </div>
+       
+           <form action="" method="post" style="display: grid;">
+            {% csrf_token %}
+               <input type="text" name="username" placeholder="Username" class="input" required>
+               <input type="password" name="password" placeholder="password" class="input" required>
+              
+               <button type="submit" class="button">Sign In</button>
+               
+           </form>
+           
+           
+           <p class="p">Don't have an account? <a href="{% url 'authe:register' %}" class="a">Sign up</a></p>
+       </div>
+   
+       
+   </center>
+
+</div>
+
+
+   
+
+
+{% endblock %}

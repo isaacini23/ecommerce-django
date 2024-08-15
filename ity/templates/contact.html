@@ -1,0 +1,100 @@
+
+
+
+
+{% extends 'indexB.html' %}
+{% load static %}
+{% block css%}
+    <link rel=" stylesheet" href=" {% static 'contact.css' %}">
+{% endblock%}
+{% block content %}
+
+
+<style>
+  body{
+    background-repeat: round;
+    background-image: url({% static 'images/map.jpg' %});
+    
+}
+
+</style>
+<div class="container" style="background-image: url({% static 'images/map.jpg' %});">
+    <div style="text-align:center">
+      <h2>Contact Us</h2>
+      <p>Swing by for a cup of coffee, or leave us a message:</p>
+    </div>
+    <div class="row">
+      <div class="column">
+        <img src="{% static 'images/map.jpg' %}" style="width:100%">
+      </div>
+      <div class="column">
+        
+        <form action="/action_page.php" method="POST">
+            {% csrf_token %}
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+          <!-- <label for="country">Country</label>
+          <select id="country" name="country">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+          </select>
+        -->
+          <label for="subject">Subject</label>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<div class="java_select"></div>
+
+
+
+
+  <script>
+
+    
+let rtnTxr  = document.querySelector('.java_select');
+let txtArray = ['Welcome to xplite! We\'re thrilled to have you join our vibrant community of creators, sharers, and connectors! Your Home for Creative Expression','xplite is a platform where you can share your passions, showcase your talents,  individuality','Collaboration:','Engage with others and build meaningful connections','Fun:','Enjoy the process of sharing and discovering new content!','Get Started Today','Explore our platform and discover new content','Share your own pictures, videos, music, and news','Connect with others and build your community','Earn rewards and badges for your contributions','aprociation',
+    'Thank you for joining us on this exciting journey! We\'re glad you\'re here and can\'t wait to see what you\'ll share with the world.'
+
+];
+let startIndex = 0;
+let writeArray = 0;
+
+setInterval(function(){
+    let txtinside = rtnTxr.innerHTML
+    if(startIndex >= txtArray[writeArray].length && rtnTxr.getAttribute('typing') == 'true'){
+      rtnTxr.innerHTML = txtinside.toString().slice(0, -1);
+       let texInsidELEngth = txtinside.length;
+
+       if(texInsidELEngth <= 0){
+        writeArray++
+        startIndex = 0;
+        rtnTxr.setAttribute('typing', false);
+       }
+
+       if(writeArray >= txtArray.length){
+          writeArray = 0;
+       }
+
+    }
+
+    rtnTxr.innerHTML += txtArray[writeArray].charAt(startIndex);
+    rtnTxr.setAttribute('typing', true);
+    startIndex++
+   
+
+},200)
+  </script>
+  
+  
+
+{% endblock%}

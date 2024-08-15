@@ -1,0 +1,57 @@
+{% extends 'indexB.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+  <div> 
+    
+    <div class="row no-gutters ">
+      {% for p in products %}
+      <div class="col-md-3 col-lg-3  col-sm-10">
+        <img class="thumbnail" src="{{p.image.url }}">
+        <div class="box-element product  bg-dark">
+          <h6><strong>{{p.name}}</strong></h6>
+          <hr>
+
+          
+          <button data-product="{{p.id}}  " data-action="add" class="btn btn-outline-secondary add-btn update-cart" name="{{entry.topic}}">Add to Cart</button>
+  
+          <a class="btn btn-outline-success" href="{% url 'ity:dress_detail' pk=p.pk %}">View</a>
+
+
+
+
+          
+          <h4 style="display: inline-block; float: right"><strong>#{{p.price}}</strong></h4>
+          
+
+        </div>
+        <h2></h2>
+      </div> 
+      
+ 
+          
+      {% endfor %}
+    </div>
+    <br>
+    {% if product_list.has_previous %}
+      <a href="?page=1">&laquo </a>
+      <a href="?page={{product_list.previous_page_number }}"> prev</a>
+    {% endif%}
+
+    page {{ product_list.number }} of {{ product_list.paginator.num_page }}
+
+    {% if product_list.has_next %}
+      <a href="?page=product_list.next_page_number"></a>
+    {% endif %}
+     
+  <footer>
+    <h4>can't find what are lookin for? <a href="">send us the design you would like </a></h4>
+  </footer>
+ 
+
+
+ </div>>
+
+  
+{% endblock content %}
